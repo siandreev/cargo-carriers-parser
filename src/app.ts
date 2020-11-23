@@ -1,4 +1,9 @@
 import express from "express";
+import fs from "fs";
+import util from "util";
+
+global.readFile = util.promisify(fs.readFile);
+global.writeFile = util.promisify(fs.writeFile);
 
 const app: express.Application = express();
 
