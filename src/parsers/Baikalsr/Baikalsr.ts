@@ -26,8 +26,7 @@ class Baikalsr extends Parser {
                 "Origin": "https://spb.baikalsr.ru",
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
                 "X-Requested-With": "XMLHttpRequest",
-                "Referer": "https://spb.baikalsr.ru/tools/calculator/",
-                "Accept": "application/json, text/javascript, */*; q=0.01"
+                "Referer": "https://spb.baikalsr.ru/tools/calculator/"
             }
         });
         const data = response.data;
@@ -81,7 +80,6 @@ class Baikalsr extends Parser {
     }
 
     private async getCityId(cityName: string): Promise<number> {
-        //const queryString = querystring.stringify();
         const response = await webClient.get(this.api.urlGetCityId, {
             params : {text: cityName}
         });
