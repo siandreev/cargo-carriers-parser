@@ -10,7 +10,7 @@ abstract class Parser implements IRequest{
         Object.assign(this, request);
     }
 
-    public abstract async calculate(): Promise<IResponse>
+    public abstract async calculate(): Promise<Array<IResponse>>
 }
 
 export default Parser;
