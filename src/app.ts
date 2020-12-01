@@ -12,8 +12,8 @@ app.listen(3000, function () {
 });
 
 const request: IRequest = {
-    cityFrom: "Тула",
-    cityTo: "Москва",
+    cityFrom: "Москва",
+    cityTo: "Тула",
     cargo : {
         length: 1,
         width: 1,

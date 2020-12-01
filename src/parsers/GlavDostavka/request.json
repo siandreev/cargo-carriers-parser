@@ -55,6 +55,6 @@
   "adr":"0",
   "operation_storehouse_id":"22842428",
   "giveout_storehouse_id":"40",
-  "pickup_date":"2020-12-03",
-  "delivery_date":"2020-12-03"
+  "pickup_date":"",
+  "delivery_date":""
 }

@@ -59,11 +59,15 @@ class GlavDostavka extends Parser {
 
         const cityFromId: number = await this.getCityId(this.cityFrom);
         const cityToId: number = await this.getCityId(this.cityTo);
+        const dates: any = await this.getMinDeliveryDate(cityFromId, cityToId);
 
         request.from.city.id = cityFromId;
         request.from.city.parent_city_id = cityFromId;
         request.to.city.id = cityToId;
         request.to.city.parent_city_id = cityToId;
+
+        request.delivery_date = dates.delivery_date;
+        request.pickup_date = dates.pickup_date;
 
         request.cargo_detailed.amount = this.cargo.units;
         request.cargo_detailed.height = this.cargo.height;
@@ -100,6 +104,40 @@ class GlavDostavka extends Parser {
         }
 
         return citiesInfo.cities.find(city => city.name === cityName)?.id;
+    }
+
+    private async getMinDeliveryDate(fromCityId: number, toCityId: number): Promise<Object> {
+        const tomorrow = new Date();
+        tomorrow.setDate(new Date().getDate()+1);
+        const pickup_date = (new Date(tomorrow).toISOString().slice(0,10)) + " 00:00";
+
+        const request: any = {};
+        request.action = "CalcMinDeliveryDate";
+        request.from_city_id = fromCityId;
+        request.to_city_id = toCityId;
+        request.pickup_date = pickup_date;
+        request.from_storehouse_id = 22764543;
+        request.giveout_storehouse_id = undefined;
+        request.express_shipping = 0;
+        request.noresponse = 1;
+
+        const query = querystring.stringify(request);
+
+        const response: any = await webClient.post(this.api.url, query, {
+            headers: {
+                "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36",
+                "Origin": "https://glav-dostavka.ru",
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                "X-Requested-With": "XMLHttpRequest",
+                "Referer": "https://glav-dostavka.ru/clients/calc/,",
+                "Accept": "application/json, text/javascript, */*; q=0.01"
+            }
+        });
+
+        return {
+            delivery_date: response.data.delivery_date.substring(0, 10),
+            pickup_date: pickup_date.substring(0, 10)
+        };
     }
 }
 
