@@ -1,6 +1,7 @@
 import express from "express";
 import GlavDostavka from "parsers/GlavDostavka/GlavDostavka";
 import IRequest from "parsers/types/IRequest";
+import Baikalsr from "parsers/Baikalsr/Baikalsr";
 
 const app: express.Application = express();
 
@@ -12,17 +13,19 @@ app.listen(3000, function () {
 });
 
 const request: IRequest = {
-    cityFrom: "Москва",
-    cityTo: "Тула",
+    cityFrom: "Санкт-Петербург",
+    cityTo: "Москва",
     cargo : {
         length: 1,
         width: 1,
         height: 1,
         weight: 40,
-        units: 2
+        units: 1
     }
 };
 
-const gv = new GlavDostavka(request);
+//const gv = new GlavDostavka(request);
+//gv.calculate().then((res: any) => console.log(res));
 
-gv.calculate().then((res: any) => console.log(res));
+const baikalsr = new Baikalsr(request);
+baikalsr.calculate().then(res => console.log(res));
