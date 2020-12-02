@@ -6,13 +6,13 @@ import {
     IDellinApi
 } from "./IDellin";
 import Parser from "parsers/Parser";
+import ParsersStorage from "core/ParsersFactory/ParsersStorage";
 import {IRequest, IResponse} from "parsers/types";
 import webClient from "core/axios/webClient";
 import io from "core/io";
 import round from "core/round";
 import iterateOnObject from "core/iterateOnObject";
 import querystring from "querystring";
-import DateTimeFormat = Intl.DateTimeFormat;
 
 class Dellin extends Parser {
     protected api: IDellinApi;
@@ -135,5 +135,7 @@ class Dellin extends Parser {
         return (date2 - date1) / (1000 * 60 * 60 * 24);
     }
 }
+
+ParsersStorage.add(Dellin);
 
 export default Dellin;

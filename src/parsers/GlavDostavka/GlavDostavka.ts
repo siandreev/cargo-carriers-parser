@@ -6,6 +6,7 @@ import Parser from "parsers/Parser";
 
 import { CitiesInfo, IGlavDostavkaApi } from "./IGlavDostavka";
 import {IRequest, IResponse} from "parsers/types";
+import ParsersStorage from "core/ParsersFactory/ParsersStorage";
 
 
 class GlavDostavka extends Parser {
@@ -140,5 +141,7 @@ class GlavDostavka extends Parser {
         };
     }
 }
+
+ParsersStorage.add(GlavDostavka);
 
 export default GlavDostavka;

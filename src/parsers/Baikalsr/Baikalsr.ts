@@ -5,7 +5,7 @@ import webClient from "core/axios/webClient";
 import io from "core/io";
 import iterateOnObject from "core/iterateOnObject";
 import querystring from "querystring";
-import {CitiesInfo} from "parsers/GlavDostavka/IGlavDostavka";
+import ParsersStorage from "core/ParsersFactory/ParsersStorage";
 
 class Baikalsr extends Parser {
     protected api: IBaikalsrApi;
@@ -86,5 +86,7 @@ class Baikalsr extends Parser {
         return response.data[0].guid;
     }
 }
+
+ParsersStorage.add(Baikalsr);
 
 export default Baikalsr;

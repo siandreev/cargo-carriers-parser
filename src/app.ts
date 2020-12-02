@@ -1,7 +1,7 @@
 import express from "express";
-import GlavDostavka from "parsers/GlavDostavka/GlavDostavka";
+import "core/ParsersFactory/ParsersStorage";
+import "parsers";
 import IRequest from "parsers/types/IRequest";
-import Baikalsr from "parsers/Baikalsr/Baikalsr";
 import Dellin from "parsers/Dellin/Dellin";
 
 const app: express.Application = express();
