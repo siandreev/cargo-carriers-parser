@@ -5,40 +5,32 @@ interface IDellinApi extends IParserApi {
     urlGetTerminalId: string
 }
 
-enum DelllinDelivery {
-    AUTO,
-    AUTO_EXPRESS,
-    AIR,
-
-}
-
 interface IDelllinDeliveryType {
-    type: DelllinDelivery,
     caption: string,
-    index: number
+    index: number,
+    outputKey: string
 }
 
 const DellineAutoDelivery: IDelllinDeliveryType = {
-    type: DelllinDelivery.AUTO,
     caption: "Авто",
-    index: 1
+    index: 1,
+    outputKey: "intercity"
 };
 
 const DellineAutoExpressDelivery: IDelllinDeliveryType = {
-    type: DelllinDelivery.AUTO_EXPRESS,
     caption: "Авто экспрес",
-    index: 4
+    index: 4,
+    outputKey: "express"
 };
 
 const DellineAirDelivery: IDelllinDeliveryType = {
-    type: DelllinDelivery.AIR,
     caption: "Авиа",
-    index: 6
+    index: 6,
+    outputKey: "avia"
 };
 
 export {
     IDellinApi,
-    DelllinDelivery,
     IDelllinDeliveryType,
     DellineAirDelivery,
     DellineAutoDelivery,

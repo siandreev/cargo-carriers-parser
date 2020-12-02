@@ -2,6 +2,7 @@ import express from "express";
 import GlavDostavka from "parsers/GlavDostavka/GlavDostavka";
 import IRequest from "parsers/types/IRequest";
 import Baikalsr from "parsers/Baikalsr/Baikalsr";
+import Dellin from "parsers/Dellin/Dellin";
 
 const app: express.Application = express();
 
@@ -27,5 +28,8 @@ const request: IRequest = {
 //const gv = new GlavDostavka(request);
 //gv.calculate().then((res: any) => console.log(res));
 
-const baikalsr = new Baikalsr(request);
-baikalsr.calculate().then(res => console.log(res));
+//const baikalsr = new Baikalsr(request);
+//baikalsr.calculate().then(res => console.log(res));
+
+const dellin = new Dellin(request);
+dellin.calculate().then(res => console.log(res));
