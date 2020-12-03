@@ -1,7 +1,10 @@
+import IRequest from "parsers/types/IRequest";
+import Parser from "parsers/Parser";
+
 interface IParsersStorage {
     add: Function,
     parsers: {
-        [key: string]: Function
+        [key: string]: new (request: IRequest) => Parser
     }
 }
 

@@ -3,6 +3,7 @@ import "core/ParsersFactory/ParsersStorage";
 import "parsers";
 import IRequest from "parsers/types/IRequest";
 import Dellin from "parsers/Dellin/Dellin";
+import ParsersManager from "core/Manager";
 
 const app: express.Application = express();
 
@@ -12,6 +13,8 @@ app.get("/", function (req, res) {
 app.listen(3000, function () {
     console.log("App is listening on port 3000!");
 });
+
+
 
 const request: IRequest = {
     cityFrom: "Санкт-Петербург",
@@ -25,11 +28,14 @@ const request: IRequest = {
     }
 };
 
+const manager = new ParsersManager(request);
+manager.calculate((res: any) => console.log(res));
+
 //const gv = new GlavDostavka(request);
 //gv.calculate().then((res: any) => console.log(res));
 
 //const baikalsr = new Baikalsr(request);
 //baikalsr.calculate().then(res => console.log(res));
 
-const dellin = new Dellin(request);
-dellin.calculate().then(res => console.log(res));
+//const dellin = new Dellin(request);
+//dellin.calculate().then(res => console.log(res));
