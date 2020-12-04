@@ -23,10 +23,9 @@ class ParsersManager {
             })
             .catch(e => console.log(e))
         );
-        Promise.all(promises).finally(() =>
-            callback(
-                {status: "done"}
-            )
+
+        Promise.allSettled(promises).finally(() =>
+            callback({status: "done"})
         );
     }
 }

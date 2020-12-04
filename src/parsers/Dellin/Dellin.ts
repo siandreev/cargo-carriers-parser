@@ -9,9 +9,9 @@ import Parser from "parsers/Parser";
 import ParsersStorage from "core/ParsersFactory/ParsersStorage";
 import {IRequest, IResponse} from "parsers/types";
 import webClient from "core/axios/webClient";
-import io from "core/io";
-import round from "core/round";
-import iterateOnObject from "core/iterateOnObject";
+import io from "core/libs/io";
+import round from "core/libs/round";
+import iterateOnObject from "core/libs/iterateOnObject";
 import querystring from "querystring";
 
 class Dellin extends Parser {

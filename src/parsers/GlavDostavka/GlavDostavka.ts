@@ -1,7 +1,7 @@
 import webClient from "core/axios/webClient";
-import io from "core/io";
+import io from "core/libs/io";
 import querystring from "querystring";
-import iterateOnObject from "core/iterateOnObject";
+import iterateOnObject from "core/libs/iterateOnObject";
 import Parser from "parsers/Parser";
 
 import { CitiesInfo, IGlavDostavkaApi } from "./IGlavDostavka";
@@ -70,14 +70,14 @@ class GlavDostavka extends Parser {
         request.delivery_date = dates.delivery_date;
         request.pickup_date = dates.pickup_date;
 
-        request.cargo_detailed.amount = this.cargo.units;
-        request.cargo_detailed.height = this.cargo.height;
-        request.cargo_detailed.width = this.cargo.width;
-        request.cargo_detailed.length = this.cargo.length;
-        request.cargo_detailed.weight = this.cargo.weight;
-        request.cargo_detailed.volume = Math.round(this.cargo.height * this.cargo.width * this.cargo.length);
-        request.cargo_detailed.total_volume = Math.round(request.cargo_detailed.volume * this.cargo.units);
-        request.cargo_detailed.total_weight = Math.round(request.cargo_detailed.weight * this.cargo.units);
+        request.cargo_detailed[0].amount = this.cargo.units;
+        request.cargo_detailed[0].height = this.cargo.height;
+        request.cargo_detailed[0].width = this.cargo.width;
+        request.cargo_detailed[0].length = this.cargo.length;
+        request.cargo_detailed[0].weight = this.cargo.weight;
+        request.cargo_detailed[0].volume = Math.round(this.cargo.height * this.cargo.width * this.cargo.length);
+        request.cargo_detailed[0].total_volume = Math.round(request.cargo_detailed.volume * this.cargo.units);
+        request.cargo_detailed[0].total_weight = Math.round(request.cargo_detailed.weight * this.cargo.units);
 
         const parsed: any = {};
         for (let elem of iterateOnObject(request)) {
