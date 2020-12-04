@@ -16,12 +16,12 @@ app.listen(8000, function () {
 
 const request: IRequest = {
     cityFrom: "Санкт-Петербург",
-    cityTo: "Тула",
+    cityTo: "Москва",
     cargo : {
         length: 1,
         width: 1,
-        height: 1000000,
-        weight: 40000000,
+        height: 1,
+        weight: 40,
         units: 1
     }
 };

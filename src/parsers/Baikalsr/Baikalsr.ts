@@ -19,17 +19,7 @@ class Baikalsr extends Parser {
     }
 
     async calculate(): Promise<Array<IResponse>> {
-        const body = await this.createFormData();
-        const response: any = await webClient.post(this.api.url, body, {
-            headers: {
-                "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36",
-                "Origin": "https://spb.baikalsr.ru",
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-                "X-Requested-With": "XMLHttpRequest",
-                "Referer": "https://spb.baikalsr.ru/tools/calculator/"
-            }
-        });
-        const data = response.data;
+        const data = await this.sendRequest();
 
         const result: IResponse = {
             company: "Байкал сервис",
@@ -51,7 +41,7 @@ class Baikalsr extends Parser {
 
     }
 
-    private async createFormData(): Promise<string> {
+    protected async createFormData(): Promise<string> {
         const request: any = await io.readFileAsJSON(__dirname,'./request.json', 'utf8');
 
         const cityFromId: number = await this.getCityId(this.cityFrom);
