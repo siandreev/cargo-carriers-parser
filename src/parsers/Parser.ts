@@ -26,7 +26,7 @@ abstract class Parser implements IRequest{
         return  response.data;
     }
 
-    protected abstract createFormData(...args: any): Promise<string> | string
+    protected abstract createFormData(...args: any): Promise<string> | string | void
 
     public abstract async calculate(): Promise<Array<IResponse>>
 }
