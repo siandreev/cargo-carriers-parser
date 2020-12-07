@@ -5,8 +5,6 @@ import Parser from "parsers/Parser";
 import {IRequest, IResponse} from "parsers/types";
 import ParsersStorage from "core/ParsersFactory/ParsersStorage";
 import {IJDEApi, JDECityIdPair, IJDEDeliveryType, JDEDelivery, JDEExpressDelivery} from "./IJDE";
-import enumerate = Reflect.enumerate;
-
 
 
 class JDE extends Parser {
@@ -20,7 +18,7 @@ class JDE extends Parser {
             urlGetNearOtpr: "https://i.jde.ru/rqst/GetNearOtpr/"
         }
 
-        dateFormat.masks.jde = "dd.mm.yyyy"
+        dateFormat.masks.jde = "dd.mm.yyyy";
     }
 
     async calculate(): Promise<Array<IResponse>> {
@@ -31,7 +29,7 @@ class JDE extends Parser {
 
         const successfulPromises: PromiseFulfilledResult<IResponse>[] =
             results.filter(elem => elem.status === "fulfilled") as PromiseFulfilledResult<IResponse>[];
-        return successfulPromises.map(elem => elem.value)
+        return successfulPromises.map(elem => elem.value).filter(elem => elem);
     }
 
     private async calculateForType(deliveryType: IJDEDeliveryType): Promise<IResponse> {

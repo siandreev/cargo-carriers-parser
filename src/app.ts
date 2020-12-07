@@ -18,10 +18,10 @@ const request: IRequest = {
     cityFrom: "Санкт-Петербург",
     cityTo: "Москва",
     cargo : {
-        length: 1,
-        width: 1,
-        height: 1,
-        weight: 40,
+        length: 1.1,
+        width: 1.3,
+        height: 1.4,
+        weight: 3000,
         units: 1
     }
 };

@@ -5,3 +5,4 @@ export {default as EastLines} from "./EastLines/EastLines";
 export {default as Energia} from "./Energia/Energia";
 export {default as JDE} from "./JDE/JDE";
 export {default as MagicTrans} from "./MagicTrans/MagicTrans";
+export {default as Pecom} from "./Pecom/Pecom";

@@ -1,6 +1,4 @@
 import Parser from "parsers/Parser";
-import io from "core/libs/io";
-import querystring from "querystring";
 import {IResponse, IRequest} from "parsers/types";
 import ParsersStorage from "core/ParsersFactory/ParsersStorage";
 
@@ -65,14 +63,13 @@ class MagicTrans extends Parser {
             return_document:true
         });
 
-        const request = 'city_form=' + encodeURI(this.cityFrom) +
+        return 'city_form=' + encodeURI(this.cityFrom) +
         '&city_to=' + encodeURI(this.cityTo) +
         '&take_cargo=true' +
         '&give_cargo=true' +
         '&json_params_cargo=' + json_params_cargo +
         '&json_other_params=' + json_other_params;
 
-        return request;
     }
 }
 

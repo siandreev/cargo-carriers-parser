@@ -37,7 +37,7 @@ class Dellin extends Parser {
 
         const successfulPromises: PromiseFulfilledResult<IResponse>[] =
             results.filter(elem => elem.status === "fulfilled") as PromiseFulfilledResult<IResponse>[];
-        return successfulPromises.map(elem => elem.value)
+        return successfulPromises.map(elem => elem.value).filter(elem => elem);
     }
 
     private async calculateForType(deliveryType: IDelllinDeliveryType): Promise<IResponse> {
