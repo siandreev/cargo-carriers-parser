@@ -29,13 +29,15 @@ class Dellin extends Parser {
     }
 
     async calculate(): Promise<Array<IResponse>> {
-        const results = await Promise.all([
+        const results = await Promise.allSettled([
             this.calculateForType(DellineAutoDelivery),
             this.calculateForType(DellineAutoExpressDelivery),
             this.calculateForType(DellineAirDelivery)
         ]);
 
-        return results.filter(elem => elem);
+        const successfulPromises: PromiseFulfilledResult<IResponse>[] =
+            results.filter(elem => elem.status === "fulfilled") as PromiseFulfilledResult<IResponse>[];
+        return successfulPromises.map(elem => elem.value)
     }
 
     private async calculateForType(deliveryType: IDelllinDeliveryType): Promise<IResponse> {

@@ -3,7 +3,8 @@ interface ICargo {
     width: number,
     height: number,
     weight: number,
-    units: number
+    units: number,
+    volume?: number
 }
 
 export default ICargo;
