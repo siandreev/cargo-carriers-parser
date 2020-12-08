@@ -10,3 +10,4 @@ export {default as PonyExpress} from "./PonyExpress/PonyExpress";
 export {default as RailContinent} from "./RailContinent/RailContinent";
 export {default as SkifCargo} from "./SkifCargo/SkifCargo";
 export {default as Vozovoz} from "./Vozovoz/Vozovoz";
+export {default as ZhdAliance} from "./ZhdAliance/ZhdAliance";
