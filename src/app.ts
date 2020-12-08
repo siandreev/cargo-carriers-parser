@@ -26,5 +26,17 @@ const request: IRequest = {
     }
 };
 
+const request1: IRequest = {
+    cityFrom: "Санкт-Петербург",
+    cityTo: "Москва",
+    cargo : {
+        length: 1,
+        width: 1,
+        height: 1,
+        weight: 40,
+        units: 1
+    }
+};
+
 const manager = new ParsersManager(request);
 manager.calculate((res: any) => console.log(res));
