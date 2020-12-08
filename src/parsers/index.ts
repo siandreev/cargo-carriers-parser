@@ -8,3 +8,4 @@ export {default as MagicTrans} from "./MagicTrans/MagicTrans";
 export {default as Pecom} from "./Pecom/Pecom";
 export {default as PonyExpress} from "./PonyExpress/PonyExpress";
 export {default as RailContinent} from "./RailContinent/RailContinent";
+export {default as SkifCargo} from "./SkifCargo/SkifCargo";

@@ -1,11 +1,13 @@
 import { ICargo, IRequest, IResponse, IParserApi} from "parsers/types";
 import webClient from "core/axios/webClient";
+import io from "core/libs/io";
 
 abstract class Parser implements IRequest{
     public cityTo: string;
     public cityFrom: string;
     public cargo: ICargo;
     protected api: IParserApi;
+    protected cacheLifeTime?: number;
 
     protected constructor(request: IRequest) {
         Object.assign(this, request);
@@ -36,6 +38,26 @@ abstract class Parser implements IRequest{
     protected abstract createFormData(...args: any): Promise<string> | string | void
 
     public abstract async calculate(): Promise<Array<IResponse>>
+
+    protected mustRefresh(date: number): boolean {
+        return (Date.now() - date) > this.cacheLifeTime;
+    }
+
+    protected async getCitiesList(cityName: string, dirname: string, webClient: any): Promise<any[]> {
+        let citiesInfo: any =
+            await io.readFileAsJSON(dirname,'./codesDictionary.json', 'utf8');
+
+        if (this.mustRefresh(citiesInfo.timestamp)) {
+            const response = await webClient.get(this.api.urlGetCityId);
+            citiesInfo = {
+                timestamp: Date.now(),
+                cities: response.data
+            };
+            await io.writeFile(dirname, './codesDictionary.json', JSON.stringify(citiesInfo))
+        }
+
+        return citiesInfo.cities;
+    }
 }
 
 export default Parser;

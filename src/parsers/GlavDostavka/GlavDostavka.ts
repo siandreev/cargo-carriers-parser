@@ -11,7 +11,7 @@ import ParsersStorage from "core/ParsersFactory/ParsersStorage";
 
 class GlavDostavka extends Parser {
     protected api: IGlavDostavkaApi;
-    private cacheLifeTime: number = 24 * 60 * 60 * 1000;
+    protected cacheLifeTime: number = 24 * 60 * 60 * 1000;
     constructor(request: IRequest) {
         super(request)
 
@@ -74,10 +74,6 @@ class GlavDostavka extends Parser {
         }
 
         return querystring.stringify(parsed);
-    }
-
-    private mustRefresh(date: number):boolean {
-        return (Date.now() - date) > this.cacheLifeTime;
     }
 
     private async getCityId(cityName: string): Promise<number> {

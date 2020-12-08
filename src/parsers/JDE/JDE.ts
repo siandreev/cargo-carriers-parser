@@ -55,7 +55,6 @@ class JDE extends Parser {
                 "Стоимость страхования: " + data.VTTN_INS_SUM,
                 "Стоимость оформления: " + data.VTTN_EXEC_DOC_SUM
             ]
-
         };
     }
 

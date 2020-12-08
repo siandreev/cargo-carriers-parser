@@ -1,5 +1,6 @@
 interface IParserApi {
-    url: string
+    url: string,
+    urlGetCityId?: string
 }
 
 export default IParserApi;
