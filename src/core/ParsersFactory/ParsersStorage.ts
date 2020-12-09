@@ -1,5 +1,5 @@
-import IRequest from "parsers/types/IRequest";
-import Parser from "parsers/Parser";
+import IRequest from "types/IRequest";
+import Parser from "core/parsers/Parser";
 
 interface IParsersStorage {
     add: Function,

@@ -1,6 +1,6 @@
 import ParsersStorage from "./ParsersStorage";
-import Parser from "parsers/Parser";
-import IRequest from "parsers/types/IRequest";
+import Parser from "core/parsers/Parser";
+import IRequest from "types/IRequest";
 
 class ParsersFactory {
     private readonly request: IRequest;

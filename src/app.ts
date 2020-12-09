@@ -1,42 +1,22 @@
-import express from "express";
 import "core/ParsersFactory/ParsersStorage";
-import "parsers";
-import IRequest from "parsers/types/IRequest";
-import ParsersManager from "core/ParsersManager";
+import "core/parsers";
 
-const app: express.Application = express();
+enum CONFIGURATION {
+    SERVER = "server",
+    COLLECTOR = "collector"
+}
 
+const configuration = process.argv.slice(2)[0];
 
+switch (configuration) {
+    case CONFIGURATION.COLLECTOR: {
 
-app.listen(8080, function () {
-    console.log("App is listening on port 8000");
-});
-
-
-
-const request: IRequest = {
-    cityFrom: "Санкт-Петербург",
-    cityTo: "Москва",
-    cargo : {
-        length: 1.1,
-        width: 1.3,
-        height: 1.4,
-        weight: 3000,
-        units: 1
+        break;
     }
-};
-
-const request1: IRequest = {
-    cityFrom: "Санкт-Петербург",
-    cityTo: "Москва",
-    cargo : {
-        length: 1,
-        width: 1,
-        height: 1,
-        weight: 40,
-        units: 1
+    case CONFIGURATION.SERVER:
+    default: {
+        import("network")
     }
-};
+}
 
-const manager = new ParsersManager(request);
-manager.calculate((res: any) => console.log(res));
+
