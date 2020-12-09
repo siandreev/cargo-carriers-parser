@@ -17,7 +17,7 @@ export namespace Validator {
     }
 
     function castProperties(request: IRequest): IRequest {
-        request = {...request, cargo: {...request.cargo}};
+        request = JSON.parse(JSON.stringify(request));
 
         const checkOwnPropertyExists = (obj: any, property: string): void => {
             if (!obj.hasOwnProperty(property)) {

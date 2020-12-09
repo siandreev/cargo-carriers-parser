@@ -24,11 +24,12 @@ export default function(app: expressWs.Application) {
                 parsersManager.calculate(processingCallback, doneCallBack);
             } catch (e) {
                 if (e instanceof CalculatorError) {
-                    ws.close(1000, JSON.stringify(ResponseCreator.stringifyErrorClose(e)));
+                    ws.send(JSON.stringify(ResponseCreator.stringifyErrorClose(e)));
                 } else {
                     console.log(e);
-                    ws.close(1000, JSON.stringify(ResponseCreator.stringifyUnexpectedErrorClose()));
+                    ws.send(JSON.stringify(ResponseCreator.stringifyUnexpectedErrorClose()));
                 }
+                ws.close(1000);
             }
         });
     })
