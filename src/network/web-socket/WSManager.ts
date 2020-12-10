@@ -10,18 +10,17 @@ export default function(app: expressWs.Application) {
         ws.on('message', msg => {
             try {
                 const request: IRequest =  Validator.validate(String(msg));
-                const processingCallback = function(result: IResponse) {
+                const callback = function(result: IResponse) {
                     ws.send(
                         JSON.stringify(ResponseCreator.stringifyProcessingResponse(result))
                     );
                 }
-                const doneCallBack = function() {
+                const parsersManager = new ParsersManager(request);
+                parsersManager.calculate(callback).then(() =>
                     ws.send(
                         JSON.stringify(ResponseCreator.stringifySuccessfulClose())
-                    );
-                }
-                const parsersManager = new ParsersManager(request);
-                parsersManager.calculate(processingCallback, doneCallBack);
+                    )
+                )
             } catch (e) {
                 if (e instanceof CalculatorError) {
                     ws.send(JSON.stringify(ResponseCreator.stringifyErrorClose(e)));

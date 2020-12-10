@@ -1,6 +1,6 @@
 import webClient from "libs/axios/webClient";
 import dateFormat from "dateformat";
-import io from "libs/io";
+import {io} from "libs/io";
 import Parser from "core/parsers/Parser";
 import {IRequest, IResponse} from "types";
 import ParsersStorage from "core/ParsersFactory/ParsersStorage";

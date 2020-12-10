@@ -11,20 +11,19 @@ class ParsersManager {
         this.parsers = factory.createAllParsers();
     }
 
-    calculate(processingCallback: (result: IResponse) => void, doneCallback: () => void) {
+    async calculate(callback: (result: IResponse) => void) {
         const promises: Array<Promise<Array<IResponse>>> = this.parsers.map(parser => parser.calculate());
         promises.forEach(promise => promise
             .then((results: Array<IResponse>) => {
                 results.forEach(result  =>
-                    processingCallback(result)
+                    callback(result)
                 );
             })
             .catch(e => console.log(e))
         );
 
-        Promise.allSettled(promises).finally(() =>
-            doneCallback()
-        );
+        const result = await Promise.allSettled(promises);
+        return;
     }
 }
 

@@ -2,7 +2,7 @@ import Parser from "core/parsers/Parser";
 import {IBaikalsrApi} from "./IBaikalsr";
 import {IRequest, IResponse} from "types";
 import webClient from "libs/axios/webClient";
-import io from "libs/io";
+import {io} from "libs/io";
 import iterateOnObject from "libs/iterateOnObject";
 import querystring from "querystring";
 import ParsersStorage from "core/ParsersFactory/ParsersStorage";

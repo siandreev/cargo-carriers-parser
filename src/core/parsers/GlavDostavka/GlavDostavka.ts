@@ -1,5 +1,5 @@
 import webClient from "libs/axios/webClient";
-import io from "libs/io";
+import {io} from "libs/io";
 import querystring from "querystring";
 import iterateOnObject from "libs/iterateOnObject";
 import Parser from "core/parsers/Parser";
@@ -7,6 +7,7 @@ import Parser from "core/parsers/Parser";
 import { CitiesInfo, IGlavDostavkaApi } from "./IGlavDostavka";
 import {IRequest, IResponse} from "types";
 import ParsersStorage from "core/ParsersFactory/ParsersStorage";
+import round from "libs/round";
 
 
 class GlavDostavka extends Parser {
@@ -35,11 +36,17 @@ class GlavDostavka extends Parser {
             maxTerm: data.arrival_period.max,
             comment: [
                 "Стоимость доставки до терминала: " +  data.results['2'].sum_debit,
-                "Стоимость доставки от терминала: " + data.results['3'].sum_debit,
-                "Стоимость страхования: " + data.results['1'].sum_debit,
-                "Дополнительная плата за экспресс доставку: " + data.results['4'].sum_debit,
+                "Стоимость доставки от терминала: " + data.results['3'].sum_debit
             ]
         };
+
+        if (data.results['1']?.sum_debit) {
+            result.comment.push("Стоимость страхования: " + data.results['1'].sum_debit,);
+        }
+
+        if (data.results['4']?.sum_debit) {
+            result.comment.push("Дополнительная плата за экспресс доставку: " + data.results['4'].sum_debit);
+        }
 
         return [result];
     }
@@ -64,9 +71,9 @@ class GlavDostavka extends Parser {
         request.cargo_detailed[0].width = this.cargo.width;
         request.cargo_detailed[0].length = this.cargo.length;
         request.cargo_detailed[0].weight = this.cargo.weight;
-        request.cargo_detailed[0].volume = Math.round(this.cargo.height * this.cargo.width * this.cargo.length);
-        request.cargo_detailed[0].total_volume = Math.round(request.cargo_detailed.volume * this.cargo.units);
-        request.cargo_detailed[0].total_weight = Math.round(request.cargo_detailed.weight * this.cargo.units);
+        request.cargo_detailed[0].volume = this.cargo.volume;
+        request.cargo_detailed[0].total_volume = this.cargo.volume * this.cargo.units;
+        request.cargo_detailed[0].total_weight = this.cargo.weight * this.cargo.units;
 
         const parsed: any = {};
         for (let elem of iterateOnObject(request)) {

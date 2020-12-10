@@ -1,6 +1,7 @@
 import { ICargo, IRequest, IResponse, IParserApi} from "types";
 import webClient from "libs/axios/webClient";
-import io from "libs/io";
+import {io} from "libs/io";
+import round from "libs/round";
 
 abstract class Parser implements IRequest{
     public cityTo: string;
@@ -11,7 +12,7 @@ abstract class Parser implements IRequest{
 
     protected constructor(request: IRequest) {
         Object.assign(this, request);
-        this.cargo.volume = this.cargo.length * this.cargo.width * this.cargo.height;
+        this.cargo.volume = round(this.cargo.length * this.cargo.width * this.cargo.height);
     }
 
     protected async sendRequest(...args: any) {

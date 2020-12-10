@@ -1,60 +1,58 @@
 {
   "action":"OrderManageCalculator",
   "is_template":"0",
+  "order_id":"",
   "service_id":"46",
+  "express_shipping":"0",
   "from":{
-    "client":{"is_new":"1","client_id":""},
-    "city":{"id":"35","parent_city_id":"35"}
+    "city":{"id":"36","parent_city_id":"36"},
+    "client":{"is_new":"1","client_id":""}
   },
   "to":{
-    "client":{"is_new":"1","client_id":""},
-    "city":{"id":"36","parent_city_id":"36"}
+    "city":{"id":"35","parent_city_id":"35"},
+    "client":{"is_new":"1","client_id":""}
+  },
+  "pickup":{
+    "address_contact":{"address":"","contact_id":""},
+    "datetime":{"time_mode":"0","time":"","from_time":"","to_time":""},
+    "enabled":"1"
+  },
+  "delivery":{
+    "address_contact":{"address":"","contact_id":""},
+    "datetime":{"time_mode":"0","time":"","from_time":"","to_time":""},
+    "enabled":"1"
   },
   "payer":{
     "type":"from",
     "client":{"is_new":"1","client_id":""},
     "vat_system":{"id":"osn","title":"НДС 20%"}
   },
-  "appraised_value":"300000",
-  "is_pickup_enabled":"1",
-  "is_delivery_enabled":"1",
   "cargo_detailed":[
     {
       "item_id":"1",
-      "one_place":"0",
+      "one_place":"1",
       "only_volume":"0",
-      "amount":"1",
-      "height":"0.8",
+      "amount":"2",
+      "height":"0.5",
       "length":"0.5",
       "width":"0.5",
-      "volume":"0.2",
+      "volume":"0.13",
       "weight":"40",
-      "total_volume":"0.2",
-      "total_weight":"40"
+      "hard_pack":"0",
+      "pallet":"0",
+      "total_volume":"0.26",
+      "total_weight":"80"
     }
   ],
-  "express_shipping":"1",
-  "restored":"false",
-  "order_id":"",
-  "pickup":{
-    "address_contact":{"address":"","contact_id":""},
-    "datetime":{"time_mode":"0","time":"","from_time":"","to_time":""},
-    "enabled":"0"
-  },
-  "delivery":{
-    "address_contact":{"address":"","contact_id":""},
-    "datetime":{"time_mode":"0","time":"09:00","from_time":"","to_time":""},
-    "enabled":"0"
-  },
   "cargo_total_height":"",
   "cargo_total_length":"",
   "cargo_total_width":"",
-  "client_delivery":{"enabled":"false","price":""},
   "is_insurance_enabled":"1",
+  "appraised_value":"0",
   "appraised_value_currency":"RUB",
   "adr":"0",
-  "operation_storehouse_id":"22842428",
-  "giveout_storehouse_id":"40",
-  "pickup_date":"",
-  "delivery_date":""
+  "is_pickup_enabled":"1",
+  "is_delivery_enabled":"1",
+  "pickup_date":"2020-12-10",
+  "delivery_date":"2020-12-12"
 }

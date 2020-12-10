@@ -1,7 +1,7 @@
 import Parser from "core/parsers/Parser";
 import {IRequest, IResponse} from "types";
 import {ISkifCargoApi, ISkifDeliveryType, SkifDeliveryExpress, SkifDelivery} from "core/parsers/SkifCargo/ISkifCargo";
-import io from "libs/io";
+import {io} from "libs/io";
 import disabledSSLClient from "libs/axios/disabledSSLClient";
 import ParsersStorage from "core/ParsersFactory/ParsersStorage";
 import dateFormat from "dateformat";

@@ -1,5 +1,5 @@
 import Parser from "core/parsers/Parser";
-import io from "libs/io";
+import {io} from "libs/io";
 import webClient from "libs/axios/webClient";
 import {IRequest, IResponse} from "types";
 import IPecomApi from "core/parsers/Pecom/IPecom";

@@ -1,7 +1,7 @@
 import Parser from "core/parsers/Parser";
 import {IRequest, IResponse} from "types";
 import {IEnegriaApi, IEnegriaCitiesInfo} from "./IEnegria";
-import io from "libs/io";
+import {io} from "libs/io";
 import webClient from "libs/axios/webClient";
 import ParsersStorage from "core/ParsersFactory/ParsersStorage";
 
