@@ -27,12 +27,14 @@ class PonyExpress extends Parser {
                     company: "PonyExpress",
                     img: "ponyexpress_logo.svg",
                     url: "https://www.ponyexpress.ru/support/servisy-samoobsluzhivaniya/tariff/",
-                    type: "Авто",
+                    type: deliveryData.servise === "Экспресс груз" ? "Авто экспесс" : "Авто",
                     cost: deliveryData.tariff,
                     fullCost: deliveryData.tariffvat,
                     minTerm: terms[0],
                     maxTerm: terms[1] || terms[0],
-                    comment: []
+                    comment: [
+                        `${deliveryData.servise === "Экспресс груз" ? "Срочная" : "Экономичная"} доставка отправлений весом от 20,5 до 80 кг по России и ближнему зарубежью.`
+                    ]
                 });
             }
         }

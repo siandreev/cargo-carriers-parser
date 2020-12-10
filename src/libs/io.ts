@@ -60,6 +60,10 @@ export namespace io {
         await util.promisify(fs.writeFile)(path.resolve(dirname, relative), data, options)
     }
 
+    export async function appendFile(dirname: string, relative: string, data: any, options?: any): Promise<void> {
+        await util.promisify(fs.appendFile)(path.resolve(dirname, relative), data, options)
+    }
+
     /**
      *
      * @param {string} dirname the __dirname variable
@@ -72,5 +76,11 @@ export namespace io {
                                          csvOptions?: CsvAsync.CsvStringifyOptions, options?: any) {
         const stringifies = await csv.stringify(data, csvOptions);
         await util.promisify(fs.writeFile)(path.resolve(dirname, relative), stringifies, options)
+    }
+
+    export async function appendFileAsCSV(dirname: string, relative: string, data: Array<Array<string | number>>,
+                                         csvOptions?: CsvAsync.CsvStringifyOptions, options?: any) {
+        const stringifies = await csv.stringify(data, csvOptions);
+        await util.promisify(fs.appendFile)(path.resolve(dirname, relative), stringifies, options)
     }
 }

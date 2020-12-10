@@ -38,11 +38,6 @@ class Pecom extends Parser {
         const ADD3 = ejectADD("ADD_3");
         const ADD4 = ejectADD("ADD_4");
 
-        const avtoTerms = data.periods_days.replace(/ /g, "").split("-");
-        const aviaTerms = data.periods.slice(data.periods.indexOf("Количество суток в пути</b>:") + 29,
-            data.periods.indexOf("Количество суток в пути</b>:") + 34)
-            .replace(/ /g, "")
-            .split("-");
 
         const createTypeResult = (type: string, cost: number, terms: number[]) => {
             const typeResult = {
@@ -68,10 +63,15 @@ class Pecom extends Parser {
         }
 
         if (data.autonegabarit?.length || data.auto?.length) {
+            const avtoTerms = data.periods_days.replace(/ /g, "").split("-");
             result.push(createTypeResult("Авто",data.autonegabarit?.[2] || data.auto[2], avtoTerms));
         }
 
         if (data.avia?.length) {
+            const aviaTerms = data.aperiods.slice(data.aperiods.indexOf("Количество суток в пути</b>:") + 29,
+                data.aperiods.indexOf("Количество суток в пути</b>:") + 34)
+                .replace(/ /g, "")
+                .split("-");
             result.push(createTypeResult("Авиа", data.avia[2], aviaTerms));
         }
 

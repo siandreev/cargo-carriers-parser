@@ -20,11 +20,13 @@ class OutputGenerator {
             response.minTerm,
             response.maxTerm
         ]);
-        await io.writeFileAsCSV(__dirname,'./dataframe.csv', rows ,{
-            header: true,
-            columns: ['cityFrom', 'cityTo', 'length', 'width', 'height', 'weight', 'units',
-            'company', 'type', 'cost', 'fullCost', 'minTerm', 'maxTerm']
-        },'utf8');
+        await io.appendFileAsCSV(__dirname,'./dataframe.csv', rows ,{},'utf8');
+    }
+
+    public async convertAndSaveFrame(frameResults: {request: IRequest, responses: IResponse[]}[]): Promise<void> {
+        for (let result of frameResults) {
+            await this.convertAndSave(result.request, result.responses);
+        }
     }
 
     private async getAdditionalData() {

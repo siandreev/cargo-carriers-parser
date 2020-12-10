@@ -33,12 +33,15 @@ class CollectManager {
         let _index = 0;
         console.log("[Info] Start parsing requests")
 
-        let resultsList: IResponse[] = [];
-        const callback = (result: IResponse) => {
-            resultsList.push(result);
-        }
-
         for (let request of this.inputDataframe) {
+            const re = request;
+
+            let resultsList: IResponse[] = [];
+
+            const callback = (result: IResponse) => {
+                resultsList.push(result);
+            }
+
             const parsersManger = new ParsersManager(request);
             await parsersManger.calculate(callback);
             await outputGenerator.convertAndSave(request, resultsList);
