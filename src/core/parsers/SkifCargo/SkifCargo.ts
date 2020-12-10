@@ -80,7 +80,11 @@ class SkifCargo extends Parser {
         request.calc_fields.common_cargo_amount = this.cargo.units;
 
         request.calc_fields.cargo_pickup_date = dateFormat(new Date(), "skif");
-        request.calc_fields.cargo_delivery_date = dateFormat(new Date(), "skif");
+
+        const tomorrow = new Date()
+        tomorrow.setDate(tomorrow.getDate() + 1)
+
+        request.calc_fields.cargo_delivery_date = dateFormat(tomorrow, "skif");
 
         request.calc_fields.express_service = type.express_service;
 

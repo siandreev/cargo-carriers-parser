@@ -21,10 +21,8 @@ abstract class Parser implements IRequest{
             const response: any = await webClient.post(this.api.url, body, {
                 headers: {
                     "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36",
-                    "Origin": "https://glav-dostavka.ru",
                     "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
                     "X-Requested-With": "XMLHttpRequest",
-                    "Referer": "https://glav-dostavka.ru/clients/calc/,",
                     "Accept": "application/json, text/javascript, */*; q=0.01"
                 }
             });

@@ -17,7 +17,7 @@ class EastLines extends Parser {
         const results = [];
         data.price = Number(data.price.replace(/ /g,''));
         data.price2 = Number(data.price2.replace(/ /g,''));
-        const term = data.transportertime_time.split(" ")[0];
+        const terms = data.transportertime_time.split(" ")[0].replace(/ /g, "").split("-");
 
         if (isFinite(data?.price) && data.price > 0 ) {
             results.push({
@@ -27,8 +27,8 @@ class EastLines extends Parser {
                 type: "Авто",
                 cost: data.price,
                 fullCost: data.price,
-                minTerm: term,
-                maxTerm: term,
+                minTerm: terms[0],
+                maxTerm: terms[1] || terms[0],
                 comment: [
                     "Выделенный транспорт. ",
                     "Тип транспорта: " + EastLines.getCarDescriptionByType(this.car)
@@ -44,8 +44,8 @@ class EastLines extends Parser {
                 type: "Авто",
                 cost: data.price2,
                 fullCost: data.price2,
-                minTerm: term,
-                maxTerm: term,
+                minTerm: terms[0],
+                maxTerm: terms[1] || terms[0],
                 comment: [
                     "Догрузка транспорта. ",
                     "Тип транспорта: " + EastLines.getCarDescriptionByType(this.car2)
