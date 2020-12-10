@@ -89,7 +89,7 @@ class SkifCargo extends Parser {
         request.calc_fields.express_service = type.express_service;
 
         if (this.cargo.length > 2.4 || this.cargo.width > 2.4 || this.cargo.height > 2.4 ||
-            this.cargo.weight > 900 || this.cargo.length + this.cargo.width + this.cargo.height) {
+            this.cargo.weight > 900 || this.cargo.length + this.cargo.width + this.cargo.height > 4.2) {
             request.calc_fields.is_overall = true;
         }
 

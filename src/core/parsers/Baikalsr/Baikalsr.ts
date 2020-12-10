@@ -21,6 +21,10 @@ class Baikalsr extends Parser {
     async calculate(): Promise<Array<IResponse>> {
         const data = await this.sendRequest();
 
+        if (data?.error === "Стоимость перевозки необходимо уточнить по телефону.") {
+            return [];
+        }
+
         const result: IResponse = {
             company: "Байкал сервис",
             img: "baikalsr_logo.png",

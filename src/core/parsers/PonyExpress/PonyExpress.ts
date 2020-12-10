@@ -17,36 +17,26 @@ class PonyExpress extends Parser {
         }
 
         const data = await this.sendRequest();
-        const deliveryData = data.result.tariffall;
-        const terms = deliveryData.delivery.replace(/ /g, "").split("-");
+        const result = [];
 
-        const expressDeliveryData = data.result["1:tariffall"];
-        const expressTerms = expressDeliveryData.delivery.replace(/ /g, "").split("-");
-
-        return [
-            {
-                company: "PonyExpress",
-                img: "ponyexpress_logo.svg",
-                url: "https://www.ponyexpress.ru/support/servisy-samoobsluzhivaniya/tariff/",
-                type: "Авто",
-                cost: deliveryData.tariff,
-                fullCost: deliveryData.tariffvat,
-                minTerm: terms[0],
-                maxTerm: terms[1] || terms[0],
-                comment: []
-            },
-            {
-                company: "PonyExpress",
-                img: "ponyexpress_logo.svg",
-                url: "https://www.ponyexpress.ru/support/servisy-samoobsluzhivaniya/tariff/",
-                type: "Авто экспресс",
-                cost: expressDeliveryData.tariff,
-                fullCost: expressDeliveryData.tariffvat,
-                minTerm: expressTerms[0],
-                maxTerm: expressTerms[1] || expressTerms[0],
-                comment: []
-            },
-        ];
+        for (let key in data.result) {
+            if (data.result.hasOwnProperty(key)) {
+                const deliveryData = data.result[key];
+                const terms = deliveryData.delivery.replace(/ /g, "").split("-");
+                result.push({
+                    company: "PonyExpress",
+                    img: "ponyexpress_logo.svg",
+                    url: "https://www.ponyexpress.ru/support/servisy-samoobsluzhivaniya/tariff/",
+                    type: "Авто",
+                    cost: deliveryData.tariff,
+                    fullCost: deliveryData.tariffvat,
+                    minTerm: terms[0],
+                    maxTerm: terms[1] || terms[0],
+                    comment: []
+                });
+            }
+        }
+        return result;
     }
 
     protected createFormData(): string {

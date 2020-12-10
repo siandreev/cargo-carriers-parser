@@ -39,8 +39,8 @@ class Pecom extends Parser {
         const ADD4 = ejectADD("ADD_4");
 
         const avtoTerms = data.periods_days.replace(/ /g, "").split("-");
-        const aviaTerms = data.aperiods.slice(data.aperiods.indexOf("Количество суток в пути</b>:") + 29,
-            data.aperiods.indexOf("Количество суток в пути</b>:") + 34)
+        const aviaTerms = data.periods.slice(data.periods.indexOf("Количество суток в пути</b>:") + 29,
+            data.periods.indexOf("Количество суток в пути</b>:") + 34)
             .replace(/ /g, "")
             .split("-");
 
