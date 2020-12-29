@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "copyfiles -u 1 src/**/*.json src/**/*.csv dist&& set NODE_PATH=./dist&& node ./dist/app.js"
+    "start": "copyfiles -u 1 src/**/*.json dist&& set NODE_PATH=./dist&& node ./dist/app.js",
+    "collect": "copyfiles -u 1 src/**/*.json src/**/*.csv dist&& set NODE_PATH=./dist&& node ./dist/app.js"
   },
   "dependencies": {
     "@types/chunk": "^0.0.0",
