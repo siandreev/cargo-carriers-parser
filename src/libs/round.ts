@@ -1,4 +1,4 @@
-export default function(number: number | string, precision: number = 2) {
+export default function(number: number | string, precision: number = Number(process.env.PRECISION) || 2): number {
     if (typeof number === "string") {
         number = number.replace(/ /g, "").replace(/,/g, ".");
     }

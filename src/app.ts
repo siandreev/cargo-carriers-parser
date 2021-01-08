@@ -14,9 +14,9 @@ const configuration = process.argv.slice(2)[0];
 
 switch (configuration) {
     case CONFIGURATION.COLLECTOR: {
-        const [generate, save] = process.argv.slice(3,5)
+        const [generate, save, random] = process.argv.slice(3,6)
         const collectorManager = new CollectManager();
-        collectorManager.initInputDataframe(!!generate, !!save).then(() => {
+        collectorManager.initInputDataframe(!!generate, !!save, !!random).then(() => {
             collectorManager.collect();
         });
         break;

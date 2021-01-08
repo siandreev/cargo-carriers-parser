@@ -7,11 +7,11 @@ class CollectManager {
     private inputDataframe: Array<IRequest>;
     private inputGenerator: InputGenerator;
 
-    public async initInputDataframe(generateData: boolean = false, saveData: boolean = false) {
+    public async initInputDataframe(generateData: boolean = false, saveData: boolean = false, randomize: boolean = true) {
         this.inputGenerator = new InputGenerator();
         if (generateData) {
             console.log("[Info] Input dataframe generation...")
-            await this.inputGenerator.generateDataframe();
+            await this.inputGenerator.generateDataframe(randomize);
 
             if (saveData) {
                 await this.inputGenerator.saveDataframe();
@@ -35,8 +35,6 @@ class CollectManager {
         console.log("[Info] Start parsing requests")
 
         for (let request of this.inputDataframe) {
-            const re = request;
-
             let resultsList: IResponse[] = [];
 
             const callback = (result: IResponse) => {
