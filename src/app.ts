@@ -1,6 +1,9 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import "core/ParsersFactory/ParsersStorage";
 import "core/parsers";
-import CollectManager from "collector/CollectManager"
+import CollectManager from "collector/CollectManager";
 
 enum CONFIGURATION {
     SERVER = "server",

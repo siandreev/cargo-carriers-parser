@@ -4,6 +4,20 @@ import {IRequest} from "types";
 
 class InputGenerator {
     public dataframe: Array<IRequest> = [];
+
+    get cities(): string[] {
+         return Array.from(
+             this.dataframe.reduce(
+                (acc: Set<string>, request: IRequest) => {
+                    acc.add(request.cityFrom);
+                    acc.add(request.cityTo);
+                    return acc;
+                },
+                new Set()
+             )
+         )
+    }
+
     public async generateDataframe(): Promise<void> {
         let config: IConfig =
             await io.readFileAsJSON(__dirname,'./config.json', 'utf8') as IConfig;

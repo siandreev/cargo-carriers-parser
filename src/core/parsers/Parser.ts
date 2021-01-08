@@ -36,7 +36,7 @@ abstract class Parser implements IRequest{
 
     protected abstract createFormData(...args: any): Promise<string> | string | void
 
-    public abstract async calculate(): Promise<Array<IResponse>>
+    public abstract calculate(): Promise<Array<IResponse>>
 
     protected mustRefresh(date: number): boolean {
         return (Date.now() - date) > this.cacheLifeTime;

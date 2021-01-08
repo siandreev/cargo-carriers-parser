@@ -5,30 +5,31 @@ import {IResponse, IRequest} from "types";
 
 class CollectManager {
     private inputDataframe: Array<IRequest>;
+    private inputGenerator: InputGenerator;
 
     public async initInputDataframe(generateData: boolean = false, saveData: boolean = false) {
-        const inputGenerator = new InputGenerator();
+        this.inputGenerator = new InputGenerator();
         if (generateData) {
             console.log("[Info] Input dataframe generation...")
-            await inputGenerator.generateDataframe();
+            await this.inputGenerator.generateDataframe();
 
             if (saveData) {
-                await inputGenerator.saveDataframe();
+                await this.inputGenerator.saveDataframe();
             }
         } else {
             console.log("[Info] Input dataframe loading...")
-            await inputGenerator.loadDataframe();
+            await this.inputGenerator.loadDataframe();
         }
 
         console.log("[Info] Input dataframe has been created...")
-        this.inputDataframe = inputGenerator.dataframe;
+        this.inputDataframe = this.inputGenerator.dataframe;
     }
 
     public async collect() {
         if (!this.inputDataframe.length) {
             await this.initInputDataframe();
         }
-        const outputGenerator = new OutputGenerator();
+        const outputGenerator = new OutputGenerator(this.inputGenerator.cities);
 
         let _index = 0;
         console.log("[Info] Start parsing requests")

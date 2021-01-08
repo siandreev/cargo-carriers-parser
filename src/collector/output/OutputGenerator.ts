@@ -1,10 +1,18 @@
 import {IResponse} from "index";
 import IRequest from "IRequest";
 import {io} from "libs/io";
+import AdditionalDataEarner from "collector/additionalDataEarner";
+import {IAdditionalData} from "collector/additionalDataEarner/IAdditionalData";
 
 
 class OutputGenerator {
+    private readonly additionalDataEarner: AdditionalDataEarner;
+    constructor(cities: string[]) {
+        this.additionalDataEarner = new AdditionalDataEarner(cities);
+    }
+
     public async convertAndSave(request: IRequest, responses: IResponse[]): Promise<void> {
+        const additionalData = await this.getAdditionalData(request);
         const rows = responses.map(response => [
             request.cityFrom,
             request.cityTo,
@@ -18,7 +26,8 @@ class OutputGenerator {
             response.cost,
             response.fullCost,
             response.minTerm,
-            response.maxTerm
+            response.maxTerm,
+            ...Object.values(additionalData)
         ]);
         await io.appendFileAsCSV(__dirname,'./dataframe.csv', rows ,{},'utf8');
     }
@@ -29,8 +38,8 @@ class OutputGenerator {
         }
     }
 
-    private async getAdditionalData() {
-
+    private getAdditionalData(request: IRequest): Promise<IAdditionalData> {
+        return this.additionalDataEarner.getAdditionalData(request)
     }
 }
 
