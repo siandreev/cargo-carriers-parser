@@ -22,8 +22,8 @@ class Vozovoz extends Parser {
         });
         const data = response.data.response;
 
-        const cost = Number(data.service[0].price.replace(/ /g, ""));
-        const fullCost = Number(data.price.replace(/ /g, ""));
+        const cost = Number(data.service[0]);
+        const fullCost = Number(data.price);
 
         const result = {
             company: "Vozovoz",
