@@ -48,6 +48,7 @@ class CollectManager {
             _index++;
             console.log(`[Info] ${_index} request parsed`)
         }
+        console.log('[Info] done')
     }
 }
 
