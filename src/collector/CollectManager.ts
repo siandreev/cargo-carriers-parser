@@ -46,7 +46,8 @@ class CollectManager {
             await outputGenerator.convertAndSave(request, resultsList);
 
             _index++;
-            console.log(`[Info] ${_index} request parsed`)
+            console.log(`\n[Info] ${_index} request parsed`)
+            console.log(new Date());
         }
         console.log('[Info] done')
     }
