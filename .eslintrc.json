@@ -1,0 +1,24 @@
+{
+  // Настройки проекта
+  "env": {
+    // Проект для браузера
+    "node": true,
+    // Включаем возможности ES6
+    "es6": true,
+    // Добавляем возможности ES2017
+    "es2017": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "../tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {}
+}
